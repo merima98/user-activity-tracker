@@ -1,8 +1,10 @@
-import crud
+from fastapi import FastAPI
+from app import user_routes
 
+app = FastAPI(title="User Management API")
 
-# crud.insert_user("John", "Doe", "New York", "USA", "10001")
+app.include_router(user_routes.router)
 
-# crud.update_user(2, {"City": "Los Angeles", "Zip Code": "90001"})
-
-crud.delete_user(3)
+@app.get("/")
+def root():
+    return {"message": "API is running!"}
